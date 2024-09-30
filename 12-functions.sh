@@ -10,8 +10,7 @@ VALIDATE(){
 #        exit1
 #     else
 #        echo "$2 is...SUCCESS"
-#     fi    
-    
+#     fi       
  }
    
 
