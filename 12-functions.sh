@@ -29,7 +29,7 @@ if [ $? -ne 0 ]
 #         exit 1
 #     else
 #         echo "git installation is sucess"
-#     fi     
+     
 # else
 #      echo "git is already installed,nothing to do.."
 # fi# 
