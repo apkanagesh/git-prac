@@ -7,6 +7,11 @@ LOG_FILE="$LOGS_FOLDER_/$SCRIPT_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER
 
 USERID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
+Y="\e[33m"
+
 
 CHECK_ROOT(){
     if [ $USERID -ne 0]
@@ -29,29 +34,19 @@ VALIDATE(){
 
 CHECK_ROOT 
 
-dnf list installed git
+for package in $@ # refers to all arguments passed to it
+do
+   dnf list installed $package &>>$LOG_FILE
+   if [ $? -ne 0 ]
+   then
+       echo "$package is not installed,going to install it.." &>>$LOG_FILE
+       dnf install $package -y &>>$LOG_FILE
+       VALIDATE $? "Installing $package"
+    else
+        echo "$package is already $Y installed..nothing to do $N" &>>$LOG_FILE
 
-VALIDATE $? "listing git"
-
-if [ $? -ne 0 ]
-then
-    echo "git is not installed,going to install it.."
-    dnf install git -y
-    VALIDATE $? "Installing Git"
-else
-     echo "git is already installed,nothing to do.."
-fi
-
-dnf list installed mysql
-
-if [ $? -ne 0 ]
-then
-    echo "MYSQL is not installed...going to install"
-    dnf install mysql -y
-     VALIDATE  $? "Installing MYSQL"
- else    
-     echo "mysql is already installed..nothing to do"
- fi      
+     fi   
+done   
 
 
 
