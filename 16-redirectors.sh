@@ -14,7 +14,7 @@ Y="\e[33m"
 
 
 CHECK_ROOT(){
-    if [ $USERID -ne 0]
+    if [ $USERID -ne 0 ]
     then
         echo -e "$R please run this script with root preveleges $N" &>>LOG_FILE
         exit 1
