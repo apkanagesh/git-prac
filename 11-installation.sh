@@ -11,4 +11,8 @@ USERID=$(id -u)
 
 #dnf install git -y
 
+ls -ltr
 
+lsdnv -ltr
+
+ls -l
