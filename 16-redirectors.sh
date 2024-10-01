@@ -31,6 +31,11 @@ VALIDATE(){
         fi     
 }
 
+USAGE(){
+    echo " $R USAGE:: $N sudo sh 16-redirectors.sh package1 package2 ..."
+    exit 1
+}
+
 CHECK_ROOT
 
  for package in $@ # refers to all arguments passed to it
